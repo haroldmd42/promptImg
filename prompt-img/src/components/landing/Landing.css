@@ -1,0 +1,11 @@
+.btn {
+    background-color: #1E293B;
+    color: #FFFF;
+}
+.btn:hover {
+    background-color: #001941;
+    color: #FFFF;
+}
+li {
+    font-size: 20px;
+}

@@ -1,0 +1,19 @@
+.navbar-gradient {
+  background: linear-gradient(90deg, #3B82F6, #8B5CF6);
+}
+.navbar{
+    background-color: #1E293B;
+    color: #ffffff;
+
+}
+.nav-link {
+    color: #ffffff !important;
+    font-weight: 400;
+}
+.nav-link:hover {
+    font-weight: 700;
+}
+.navbar-brand img {
+  max-height: 50px; /* controla la altura máxima */
+  width: auto;      /* mantiene proporción */
+}

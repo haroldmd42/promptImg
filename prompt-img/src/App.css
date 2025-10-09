@@ -1,0 +1,21 @@
+p{
+    font-size: 20px;
+}
+.floating-btn {
+  position: fixed;
+  bottom: 20px;    /* distancia desde abajo */
+  right: 20px;     /* distancia desde la derecha */
+  z-index: 1050;   /* para que quede por encima */
+  
+  width: 70px;     /* ancho fijo */
+  height: 70px;    /* alto fijo */
+  border-radius: 50%; /* círculo perfecto */
+  
+  background-color: #0d6efd; /* azul Bootstrap, cámbialo si quieres */
+  color: white;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2); /* sombra flotante */
+}
