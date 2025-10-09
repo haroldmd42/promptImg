@@ -17,9 +17,6 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: prompt-img
 
     steps:
       - name: Checkout code
@@ -28,7 +25,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 20  # ✅ actualizado
+          node-version: 20
 
       - name: Install dependencies
         run: npm install
@@ -39,7 +36,7 @@ jobs:
       - name: Upload production-ready files
         uses: actions/upload-pages-artifact@v3
         with:
-          path: prompt-img/dist
+          path: dist  # 👈 la carpeta correcta generada por Vite
 
   deploy:
     environment:
