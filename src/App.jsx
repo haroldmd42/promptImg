@@ -1,14 +1,10 @@
-
-import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
-import './App.css'
-import Navbar from './components/navbar/NavBar'
-import Landing from './components/landing/Landing'
-import Collections from './components/Collections'
-
-
+import { HashRouter as Router, Route, Routes } from 'react-router-dom';
+import './App.css';
+import Navbar from './components/navbar/NavBar';
+import Landing from './components/landing/Landing';
+import Collections from './components/Collections';
 
 function App() {
-
   return (
     <Router>
       <Navbar />
@@ -17,8 +13,7 @@ function App() {
         <Route path='/collections' element={<Collections />} />
       </Routes>
     </Router>
-
-  )
+  );
 }
 
-export default App
+export default App;
