@@ -24,7 +24,7 @@ const Landing = () => {
           <button className="btn btn-lg mt-3"><a className= "nav-link" href="/collections">Probar ahora</a></button>
         </div>
 
-        {/* Imagen a la derecha */}
+    
         <div className="col-md-6 text-center">
           <img
             src="../landing.png"
