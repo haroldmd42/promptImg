@@ -17,9 +17,6 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: prompt-img  # 👈 tu carpeta del proyecto (ajusta si cambia)
 
     steps:
       - name: Checkout code
@@ -39,7 +36,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: prompt-img/dist  # 👈 ruta donde Vite genera los archivos
+          path: dist
 
   deploy:
     environment:
