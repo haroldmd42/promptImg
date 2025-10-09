@@ -36,7 +36,7 @@ jobs:
       - name: Upload production-ready files
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist  # 👈 la carpeta correcta generada por Vite
+          path: dist
 
   deploy:
     environment:
