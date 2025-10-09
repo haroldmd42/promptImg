@@ -17,6 +17,9 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: prompt-img  # 👈 tu carpeta del proyecto (ajusta si cambia)
 
     steps:
       - name: Checkout code
@@ -28,15 +31,15 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Build project
         run: npm run build
 
-      - name: Upload production-ready files
+      - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: prompt-img/dist  # 👈 ruta donde Vite genera los archivos
 
   deploy:
     environment:
