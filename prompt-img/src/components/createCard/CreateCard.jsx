@@ -46,10 +46,10 @@ const CreateCard = ({ addCard }) => {
 
       const savedCard = await response.json();
 
-      // Actualizar la UI en el front
+      
       addCard(savedCard);
 
-      // Limpiar el formulario
+
       setTitle("");
       setDescription("");
       setImage("");
