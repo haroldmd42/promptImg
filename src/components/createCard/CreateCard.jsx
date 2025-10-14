@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./CreateCard.css"; // 🔹 Importamos los estilos futuristas
 
 const CreateCard = ({ addCard }) => {
   const [title, setTitle] = useState("");
@@ -7,16 +8,13 @@ const CreateCard = ({ addCard }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // Convierte imagen a base64 para enviar al backend
   const handleFileChange = (e) => {
     const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImage(reader.result); // Base64 string
-      };
-      reader.readAsDataURL(file);
-    }
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onloadend = () => setImage(reader.result);
+    reader.readAsDataURL(file);
   };
 
   const handleSubmit = async (e) => {
@@ -24,95 +22,81 @@ const CreateCard = ({ addCard }) => {
     setLoading(true);
     setError(null);
 
-    const newCard = {
-      title,
-      description,
-      image,
-    };
+    const newCard = { title, description, image };
 
     try {
-      // Enviar al backend
-      const response = await fetch("https://promptback-2.onrender.com/prompts", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newCard),
-      });
-
-      if (!response.ok) {
-        throw new Error("Error al guardar el prompt");
-      }
-
-      const savedCard = await response.json();
-
-      
-      addCard(savedCard);
-
-
+      await addCard(newCard);
       setTitle("");
       setDescription("");
       setImage("");
     } catch (err) {
-      setError(err.message);
+      setError("No se pudo crear el prompt. Intenta nuevamente.");
+      console.error("Error al crear prompt:", err);
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit} className="container m-2">
-        {/* Imagen */}
-        <div className="mb-3">
-          <label className="form-label">Imagen de referencia</label>
-          <input
-            type="file"
-            className="form-control"
-            accept="image/*"
-            onChange={handleFileChange}
-            required
-          />
-          {image && (
-            <img
-              src={image}
-              alt="preview"
-              className="mt-3"
-              style={{ maxWidth: "200px", borderRadius: "8px" }}
-            />
-          )}
-        </div>
+    <form onSubmit={handleSubmit} className="futuristic-form">
+      
+      <h3 className="text-center mb-4 neon-title">Crear nuevo Prompt</h3>
 
-        {/* Título */}
-        <div className="mb-3">
-          <label className="form-label">Título del prompt</label>
-          <input
-            type="text"
-            className="form-control"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            required
+      {/* Imagen */}
+      <div className="mb-3">
+        <label className="form-label">Imagen de referencia</label>
+        <input
+          type="file"
+          className="form-control neon-input text-light"
+          accept="image/*"
+          onChange={handleFileChange}
+          required
+        />
+        {image && (
+          <img
+            src={image}
+            alt="preview"
+            className="preview-img mt-3"
           />
-        </div>
+        )}
+      </div>
 
-        {/* Descripción */}
-        <div className="mb-3">
-          <label className="form-label">Prompt</label>
-          <textarea
-            className="form-control"
-            rows="3"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            required
-          />
-        </div>
+      {/* Título */}
+      <div className="mb-3">
+        <label className="form-label">Título del prompt</label>
+        <input
+          type="text"
+          className="form-control neon-input text-light"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          placeholder="Ej. Retrato profesional futurista"
+          required
+        />
+      </div>
 
-        {error && <p className="text-danger">{error}</p>}
-        <button type="submit" className="btn btn-primary" disabled={loading}>
-          {loading ? "Guardando..." : "Crear prompt"}
-        </button>
-      </form>
-    </div>
+      {/* Descripción */}
+      <div className="mb-3">
+        <label className="form-label">Prompt</label>
+        <textarea
+          className="form-control neon-input text-light"
+          rows="3"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          placeholder="Describe el estilo o detalle del prompt"
+          required
+        />
+      </div>
+
+      {error && <p className="text-danger small">{error}</p>}
+
+      <button
+        type="submit"
+        className="neon-button w-100"
+        disabled={loading}
+      >
+        {loading ? "Guardando..." : "Crear Prompt ✨"}
+      </button>
+    </form>
   );
 };
 

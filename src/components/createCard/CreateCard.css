@@ -1,0 +1,78 @@
+.futuristic-form {
+  background: rgba(10, 10, 20, 0.85);
+  border: 2px solid rgba(0, 255, 255, 0.2);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  color: #e0e0e0;
+  font-family: "Orbitron", sans-serif;
+  animation: fadeIn 0.8s ease-out;
+}
+
+.neon-title {
+  color: #00ffff;
+  text-shadow: 0 0 10px #00ffff, 0 0 20px #0077ff;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.neon-input {
+  background: rgba(20, 20, 35, 0.9);
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  color: #00ffff;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 5px rgba(0, 255, 255, 0.1);
+}
+
+.neon-input:focus {
+  outline: none;
+  border-color: #00ffff;
+  box-shadow: 0 0 12px #00ffff, 0 0 20px #0077ff;
+  background: rgba(15, 15, 30, 0.95);
+}
+
+.neon-button {
+  background: linear-gradient(90deg, #00ffff, #0077ff);
+  border: none;
+  color: #000;
+  font-weight: bold;
+  letter-spacing: 1px;
+  border-radius: 10px;
+  padding: 0.8rem 1.2rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+}
+
+.neon-button:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 25px #00ffff, 0 0 40px #0077ff;
+  background: linear-gradient(90deg, #00ffff, #ff00ff);
+}
+
+.preview-img {
+  max-width: 200px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px #00ffff;
+  border: 1px solid rgba(0, 255, 255, 0.3);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+/* Forzar color blanco en placeholders dentro de neon-input */
+.neon-input::placeholder {
+  color: rgba(255, 255, 255, 0.8) !important;
+  opacity: 1 !important;
+}
+
+/* Compatibilidad con navegadores */
+.neon-input:-ms-input-placeholder { /* IE 10-11 */
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.neon-input::-ms-input-placeholder { /* Microsoft Edge antiguo */
+  color: rgba(255, 255, 255, 0.8) !important;
+}
