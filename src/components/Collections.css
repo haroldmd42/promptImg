@@ -100,5 +100,42 @@ body.modal-open {
 
 .floating-btn-futuristic:hover {
   transform: scale(1.1);
+  color: #fff;
   box-shadow: 0 0 40px #00f5ff;
+}
+.search-container {
+  color: #fff;
+  position: relative;
+  max-width: 300px;
+}
+
+.search-input {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(0, 255, 255, 0.5);
+  color: #fff;
+  border-radius: 30px;
+  padding: 10px 40px 10px 40px;
+  transition: all 0.3s ease;
+}
+
+.search-input::placeholder {
+  color: rgb(255, 255, 255);
+}
+
+.search-input:focus {
+  outline: none;
+  color: #fff;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* 🔍 Ícono dentro del input */
+.search-icon {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  transform: translateY(-50%);
+  font-size: 1.1rem;
+  color: rgba(0, 255, 255, 0.8);
+  pointer-events: none;
 }

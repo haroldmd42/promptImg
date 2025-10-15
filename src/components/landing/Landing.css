@@ -63,14 +63,24 @@
   align-items: center;
   justify-content: center;
 }
-
+.social-link-by {
+  font-size: 12px;
+  color: #00f5ff;
+  padding-top: 18px;
+  margin-left: 0.5rem;
+  font-weight: 500;
+}
+.social-link-by:hover {
+  color: #ffffff;
+  text-shadow: 0.5px 1px 4px #ffffff;
+}
 .social-link:hover {
   transform: scale(1.2);
   color: #0077ff;
 }
 
 .social-link.linkedin:hover {
-  color: #0a66c2; /* Azul LinkedIn */
+  color: #ffffff; /* Azul LinkedIn */
 }
 
 .social-link.github:hover {

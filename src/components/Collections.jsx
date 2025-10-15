@@ -48,26 +48,35 @@ const ModalPortal = ({ children, onClose }) => {
 
 const Collections = () => {
   const [collections, setCollections] = useState([]);
+  const [filteredCollections, setFilteredCollections] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
 
   /* 🔹 Bloquea el scroll del fondo cuando el modal está abierto */
   useEffect(() => {
-    if (showModal) {
-      document.body.classList.add("modal-open");
-    } else {
-      document.body.classList.remove("modal-open");
-    }
+    document.body.classList.toggle("modal-open", showModal);
   }, [showModal]);
 
-  /* 🔹 Carga de colecciones */
+  /* 🔹 Carga inicial de colecciones */
   useEffect(() => {
     fetch("https://promptback-2.onrender.com/prompts")
       .then((res) => res.json())
-      .then((data) => setCollections(data))
+      .then((data) => {
+        setCollections(data);
+        setFilteredCollections(data);
+      })
       .catch((err) => console.error("Error al cargar prompts:", err))
       .finally(() => setLoading(false));
   }, []);
+
+  /* 🔹 Filtrar por título */
+  useEffect(() => {
+    const filtered = collections.filter((item) =>
+      item.title?.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredCollections(filtered);
+  }, [searchTerm, collections]);
 
   /* 🔹 Agregar nueva tarjeta */
   const addCard = async (newCard) => {
@@ -99,30 +108,65 @@ const Collections = () => {
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
-        <div className="text-center mb-5">
-          <motion.h1
-            className="fw-bold text-cyan"
-            initial={{ y: -30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.6 }}
+        {/* 🔹 Encabezado y buscador */}
+        <div className="collections-header d-flex flex-column flex-md-row justify-content-between align-items-center mb-5">
+          <div className="text-center text-md-start">
+            <motion.h1
+              className="fw-bold text-cyan"
+              initial={{ y: -30, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.6 }}
+            >
+              Galería de Colecciones
+            </motion.h1>
+            <motion.p
+              className="lead text-light mx-auto mb-0"
+              style={{ maxWidth: "700px" }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4, duration: 0.6 }}
+            >
+              Explora prompts diseñados para inspirarte y ayudarte a crear retratos
+              hiperrealistas con el poder de la inteligencia artificial.
+            </motion.p>
+          </div>
+
+          {/* 🔹 Campo de búsqueda con ícono */}
+          <motion.div
+            className="search-container mt-4 mt-md-0 position-relative"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.4 }}
           >
-            Galería de Colecciones
-          </motion.h1>
-          <motion.p
-            className="lead text-light mx-auto"
-            style={{ maxWidth: "700px" }}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-          >
-            Explora prompts diseñados para inspirarte y ayudarte a crear retratos
-            hiperrealistas con el poder de la inteligencia artificial.
-          </motion.p>
+            <input
+              type="text"
+              className="form-control search-input ps-5"
+              placeholder="Buscar colección..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+            <i className="bi bi-search search-icon"></i>
+          </motion.div>
         </div>
 
+        {/* 🔹 Listado o mensaje sin resultados */}
         {loading ? (
           <div className="d-flex justify-content-center my-5">
             <div className="loader-futuristic"></div>
+          </div>
+        ) : filteredCollections.length > 0 ? (
+          <CardCollections collections={filteredCollections} />
+        ) : searchTerm.trim() !== "" ? (
+          <div className="text-center text-light my-5">
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6 }}
+              className="fs-5"
+            >
+              No se encontraron colecciones para "
+              <span className="text-cyan">{searchTerm}</span>".
+            </motion.p>
           </div>
         ) : (
           <CardCollections collections={collections} />

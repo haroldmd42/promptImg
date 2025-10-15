@@ -76,6 +76,7 @@ const Landing = () => {
             >
               <FaGithub />
             </a>
+            <p className="social-link-by">® By HDEVS</p>
           </motion.div>
         </div>
 
@@ -89,8 +90,11 @@ const Landing = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.4, duration: 0.8 }}
           />
+          
         </div>
+        
       </div>
+      
     </section>
   );
 };
