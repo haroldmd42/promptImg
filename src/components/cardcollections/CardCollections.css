@@ -65,3 +65,167 @@
   box-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
   background: linear-gradient(90deg, #3b82f6, #00ffff);
 }
+.card-text {
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.card-text.collapsed {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-text.expanded {
+  -webkit-line-clamp: unset;
+}
+
+.btn-toggle {
+  background: none;
+  border: none;
+  color: #00ffff;
+  font-weight: bold;
+  cursor: pointer;
+  align-self: flex-start;
+  transition: color 0.3s ease;
+  text-shadow: 0 0 8px rgba(0, 255, 255, 0.4);
+}
+
+.btn-toggle:hover {
+  color: #3b82f6;
+}
+/* --- Imagen clickable --- */
+.clickable-image {
+  cursor: pointer;
+  transition: transform 0.4s ease;
+}
+
+.image-wrapper {
+  position: relative;
+}
+
+.image-wrapper .overlay {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0, 255, 255, 0.15);
+  text-align: center;
+  color: #00ffff;
+  padding: 8px 0;
+  font-weight: bold;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+}
+
+.image-wrapper:hover .overlay {
+  opacity: 5;
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center; /* centra verticalmente */
+  justify-content: center; /* centra horizontalmente */
+  z-index: 3000;
+  overflow: hidden; /* evita scroll de fondo */
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Caja del modal: relativa para que el overlay la centre */
+.modal-futuristic {
+  position: relative;
+  background: rgba(17, 25, 40, 0.95);
+  border: 1px solid rgba(0, 255, 255, 0.25);
+  border-radius: 20px;
+  box-shadow: 0 0 40px rgba(0, 255, 255, 0.45);
+  color: #e2e8f0;
+  width: 100%;
+  max-width: 1200px; /* ancho máximo de la caja del modal */
+  max-height: 90vh;
+  overflow: hidden; /* no queremos scroll del body; el modal controla su contenido */
+  padding: 0;
+  z-index: 3500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* --- Específico para la imagen: queremos que ocupe siempre la pantalla del modal --- */
+.image-modal-futuristic {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border-radius: 12px;
+  background: transparent; /* deja ver el overlay desenfocado si quieres */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Wrapper que contiene la imagen y controla su tamaño */
+.image-preview-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+/* Imagen: ocupa TODO el área del modal (sin recortar) */
+.image-preview-full {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* mantiene proporción y siempre se verá completa */
+  user-select: none;
+  pointer-events: none; /* para que el click cierre el modal en el overlay */
+  border-radius: 0;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* Botón de cierre similar a tu estilo */
+.btn-close-modal {
+  position: absolute;
+  top: 18px;
+  right: 22px;
+  background: transparent;
+  color: white;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 3600;
+  padding: 6px 10px;
+  border-radius: 8px;
+  transition: transform 0.15s ease, background 0.15s;
+}
+
+.btn-close-modal:hover {
+  transform: scale(1.05);
+
+  color: #00f5ff;
+}
+
+/* Scroll interno si alguna vez lo necesitas (no aplicado ahora) */
+.modal-futuristic::-webkit-scrollbar {
+  width: 6px;
+}
+.modal-futuristic::-webkit-scrollbar-thumb {
+  background: linear-gradient(#00f5ff, #0077ff);
+  border-radius: 6px;
+}
+
+/* Bloquear scroll del body cuando el modal está abierto (tu referencia) */
+body.modal-open {
+  overflow: hidden;
+}

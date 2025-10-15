@@ -1,5 +1,5 @@
 .landing-container {
-  min-height: 100vh;
+  min-height: 30vh;
   color: white;
   position: relative;
   z-index: 2;
@@ -47,4 +47,32 @@
 }
 .futuristic-image:hover {
   transform: scale(1.05) rotate(1deg);
+}
+/* 🔹 Sección de iconos sociales */
+.social-icons {
+  display: flex;
+  gap: 1.2rem;
+  margin-top: 2rem;
+}
+
+.social-link {
+  font-size: 2rem;
+  color: #00f5ff;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-link:hover {
+  transform: scale(1.2);
+  color: #0077ff;
+}
+
+.social-link.linkedin:hover {
+  color: #0a66c2; /* Azul LinkedIn */
+}
+
+.social-link.github:hover {
+  color: #fff; /* Blanco GitHub */
 }

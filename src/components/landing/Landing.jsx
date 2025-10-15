@@ -1,6 +1,7 @@
 import "./Landing.css";
 import { NavLink } from "react-router-dom";
-import {motion} from "framer-motion";
+import { motion } from "framer-motion";
+import { FaLinkedin, FaGithub } from "react-icons/fa";
 
 const Landing = () => {
   return (
@@ -48,6 +49,33 @@ const Landing = () => {
             <NavLink to="/collections" className="btn-futuristic mt-4">
               Probar ahora
             </NavLink>
+          </motion.div>
+
+          {/* 🔹 Iconos de redes sociales */}
+          <motion.div
+            className="social-icons mt-5"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.2, duration: 0.6 }}
+          >
+            <a
+              href="https://www.linkedin.com/in/yan-harold-mu%C3%B1oz-dominguez-44a2a6b9/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="social-link linkedin"
+              title="LinkedIn"
+            >
+              <FaLinkedin />
+            </a>
+            <a
+              href="https://github.com/haroldmd42"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="social-link github"
+              title="GitHub"
+            >
+              <FaGithub />
+            </a>
           </motion.div>
         </div>
 
