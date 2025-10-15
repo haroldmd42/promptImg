@@ -54,7 +54,7 @@ const Landing = () => {
         {/* Imagen a la derecha */}
         <div className="col-md-6 text-center">
           <motion.img
-            src="../landing.png"
+            src={`${import.meta.env.BASE_URL}landing.png`}
             alt="Ejemplo VisageAI"
             className="img-fluid futuristic-image"
             initial={{ opacity: 0, scale: 0.95 }}
