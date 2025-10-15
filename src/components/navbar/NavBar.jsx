@@ -6,7 +6,7 @@ const Navbar = () => {
     <nav className="navbar-futuristic">
       <div className="navbar-inner">
         <NavLink className="navbar-logo" to="/">
-          <img ssrc={`${import.meta.env.BASE_URL}logo.png`}alt="Logo" />
+          <img src={`${import.meta.env.BASE_URL}logo.png`}alt="Logo" />
           
         </NavLink>
 
