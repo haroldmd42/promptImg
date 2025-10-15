@@ -1,129 +1,101 @@
-/* 🔹 Fondo blur con bordes brillantes */
 .navbar-futuristic {
   position: sticky;
   top: 0;
-  z-index: 2000;
-  width: 90%;
-  margin: 1.5rem auto;
-  padding: 0.8rem 1.5rem;
-  border-radius: 16px;
-  background: rgba(15, 23, 42, 0.65);
-  backdrop-filter: blur(14px);
-  border: 1px solid rgba(0, 255, 255, 0.25);
-  box-shadow: 0 0 25px rgba(0, 255, 255, 0.25);
-  transition: all 0.3s ease-in-out;
+  z-index: 100;
+  background: rgba(10, 25, 47, 0.7);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
 }
 
-/* 🔹 Glow animado cuando pasas el mouse */
-.navbar-futuristic:hover {
-  box-shadow: 0 0 40px rgba(0, 255, 255, 0.5);
-  border-color: rgba(0, 255, 255, 0.45);
-}
-
-/* 🔹 Contenedor interno */
 .navbar-inner {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0.75rem 1.5rem;
 }
 
-/* 🔹 Logo + texto */
-.navbar-logo {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  gap: 10px;
+.navbar-logo-img {
+  height: 40px;
+  filter: drop-shadow(0 0 8px cyan);
 }
 
-.navbar-logo img {
-  width: 42px;
-  height: 42px;
-  filter: drop-shadow(0 0 6px #00f5ff);
-}
-
-.logo-text {
-  font-family: "Orbitron", sans-serif;
-  font-size: 1.3rem;
-  color: #00f5ff;
-  text-shadow: 0 0 12px #00f5ff;
-  letter-spacing: 1px;
-}
-
-.logo-text span {
-  color: #ffffff;
-}
-
-/* 🔹 Enlaces */
+/* Links */
 .navbar-links {
   display: flex;
-  gap: 2rem;
+  gap: 1.5rem;
   list-style: none;
-  margin: 0;
-  padding: 0;
+  transition: all 0.3s ease-in-out;
 }
 
-.nav-link {
-  font-family: "Poppins", sans-serif;
-  color: #e2e8f0;
-  font-weight: 500;
+.navbar-links .nav-link {
+  color: #00eaff;
   text-decoration: none;
-  position: relative;
-  transition: all 0.3s ease;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: 0.3s;
 }
 
-/* 🔹 Subrayado neon animado */
-.nav-link::after {
-  content: "";
-  position: absolute;
-  bottom: -4px;
-  left: 50%;
-  width: 0%;
-  height: 2px;
-  background: linear-gradient(90deg, #00f5ff, #0077ff);
-  border-radius: 4px;
-  transition: all 0.3s ease;
-  transform: translateX(-50%);
+.navbar-links .nav-link:hover {
+  color: #fff;
+  text-shadow: 0 0 10px #00eaff, 0 0 20px #00eaff;
 }
 
-.nav-link:hover {
-  color: #00f5ff;
-  text-shadow: 0 0 10px #00f5ff;
+/* 🔹 Botón hamburguesa futurista */
+.navbar-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 30px;
+  height: 25px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 200;
 }
 
-.nav-link:hover::after {
+.bar {
+  height: 3px;
   width: 100%;
+  background: cyan;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px cyan;
 }
 
-/* 🔹 Estado activo (de NavLink) */
-.nav-link.active {
-  color: #00f5ff;
-  text-shadow: 0 0 10px #00f5ff;
+.navbar-toggle.open .bar:nth-child(1) {
+  transform: rotate(45deg) translateY(8px);
+}
+.navbar-toggle.open .bar:nth-child(2) {
+  opacity: 0;
+}
+.navbar-toggle.open .bar:nth-child(3) {
+  transform: rotate(-45deg) translateY(-8px);
 }
 
-.nav-link.active::after {
-  width: 100%;
-}
-
-/* 🔹 Responsivo */
+/* 🔻 Responsivo: colapsa el menú */
 @media (max-width: 768px) {
-  .navbar-inner {
-    flex-direction: column;
-    gap: 1rem;
+  .navbar-toggle {
+    display: flex;
   }
 
   .navbar-links {
+    position: absolute;
+    top: 65px;
+    right: 0;
     flex-direction: column;
-    align-items: center;
-    gap: 1rem;
+    background: rgba(0, 15, 35, 0.95);
+    border-left: 1px solid rgba(0, 255, 255, 0.3);
+    border-bottom: 1px solid rgba(0, 255, 255, 0.3);
+    padding: 1rem 2rem;
+    transform: translateY(-150%);
+    opacity: 0;
   }
 
-  .navbar-futuristic {
-    width: 95%;
-    padding: 1rem;
+  .navbar-links.show {
+    transform: translateY(0);
+    opacity: 1;
+    transition: all 0.4s ease;
   }
-}
-
-.navbar-inner img {
-  max-height: 50px; /* controla la altura máxima */
-  width: auto;      /* mantiene proporción */
 }
